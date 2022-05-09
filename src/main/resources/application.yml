@@ -1,0 +1,55 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 8082
+  contextPath:
+
+# JACKSON
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  datasource:
+    ## H2
+    url: jdbc:h2:mem:mydb
+    ##url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    #username: su
+    #password: 
+    
+        
+    ## MYSQL
+    #url: jdbc:mysql://localhost/database_name
+    #username: root
+    #password: 
+    #driver-class-name: com.mysql.jdbc.Driver
+    
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings: 
+        web-allow-others: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+     
+
+
+jwt:
+  header: Authorization
+  secret: tasksSecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      
+password:
+  #La contraseña tiene una longitud de 8-16 dígitos y hay al menos dos números.
+  validate_regex: "^(?=.*\\d)(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^[^\\s\\u4e00-\\u9fa5]{4,20}"
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
